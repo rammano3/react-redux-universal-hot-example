@@ -9,6 +9,7 @@ import {
     RequireLogin,
     LoginSuccess,
     Survey,
+    SurveyVoter,
     NotFound,
   } from 'containers';
 
@@ -23,6 +24,7 @@ export default function(store) {
         <Route path="/loginSuccess" component={LoginSuccess}/>
       </Route>
       <Route path="/survey" component={Survey}/>
+      <Route path="/survey-voter" component={SurveyVoter}/>
       <Route path="*" component={NotFound}/>
     </Route>
   );

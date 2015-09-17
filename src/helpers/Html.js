@@ -30,10 +30,13 @@ export default class Html extends Component {
           {DocumentMeta.renderAsReact()}
 
           <link rel="shortcut icon" href="/favicon.ico" />
-          <link href={cdn + 'twitter-bootstrap/3.3.5/css/bootstrap.css'}
-                media="screen, projection" rel="stylesheet" type="text/css" />
           <link href={cdn + 'font-awesome/4.3.0/css/font-awesome.min.css'}
                 media="screen, projection" rel="stylesheet" type="text/css" />
+          <link href='https://fonts.googleapis.com/css?family=Roboto:400,300,500'
+                rel='stylesheet' type='text/css' />
+          <link href='https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/css/materialize.min.css'
+                rel='stylesheet' type='text/css' />
+          <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
 
           {/* styles (will be present only in production with webpack extract text plugin) */}
           {Object.keys(assets.styles).map((style, i) =>

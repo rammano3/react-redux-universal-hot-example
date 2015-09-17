@@ -6,4 +6,5 @@ export Login from './Login/Login';
 export RequireLogin from './RequireLogin/RequireLogin';
 export LoginSuccess from './LoginSuccess/LoginSuccess';
 export Survey from './Survey/Survey';
+export SurveyVoter from './SurveyVoter/SurveyVoter';
 export NotFound from './NotFound/NotFound';

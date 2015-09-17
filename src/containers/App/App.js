@@ -5,7 +5,6 @@ import { connect } from 'react-redux';
 import DocumentMeta from 'react-document-meta';
 import { isLoaded as isInfoLoaded, load as loadInfo } from 'redux/modules/info';
 import { isLoaded as isAuthLoaded, load as loadAuth, logout } from 'redux/modules/auth';
-import { InfoBar } from 'components';
 import { createTransitionHook } from 'helpers/universalRouter';
 
 const title = 'React Redux Example';
@@ -36,8 +35,9 @@ const meta = {
 };
 
 @connect(
-    state => ({user: state.auth.user}),
-    dispatch => bindActionCreators({logout}, dispatch))
+  state => ({user: state.auth.user}),
+  dispatch => bindActionCreators({logout}, dispatch)
+)
 export default class App extends Component {
   static propTypes = {
     children: PropTypes.object.isRequired,
@@ -93,40 +93,26 @@ export default class App extends Component {
     return (
       <div className={styles.app}>
         <DocumentMeta {...meta}/>
-        <nav className="navbar navbar-default navbar-fixed-top">
-          <div className="container">
-            <Link to="/" className="navbar-brand">
-              <div className={styles.brand}/>
-              React Redux Example
-            </Link>
-
-            <ul className="nav navbar-nav">
-              <li><Link to="/widgets">Widgets</Link></li>
-              <li><Link to="/survey">Survey</Link></li>
-              <li><Link to="/about">About Us</Link></li>
-              {!user && <li><Link to="/login">Login</Link></li>}
-              {user && <li className="logout-link"><a href="/logout" onClick={::this.handleLogout}>Logout</a></li>}
-            </ul>
-            {user &&
-            <p className={styles.loggedInMessage + ' navbar-text'}>Logged in as <strong>{user.name}</strong>.</p>}
-            <ul className="nav navbar-nav navbar-right">
-              <li>
-                <a href="https://github.com/erikras/react-redux-universal-hot-example"
-                   target="_blank" title="View on Github"><i className="fa fa-github"/></a>
-              </li>
-            </ul>
-          </div>
-        </nav>
+        <div className="navbar-fixed row">
+          <nav>
+            <div className="nav-wrapper">
+              <div className="col s12">
+                <Link to="/" className="brand-logo">
+                  React Redux Example
+                </Link>
+                <ul id="nav-mobile" className="right hide-on-med-and-down">
+                  <li><Link to="/survey-voter">Voting Survey</Link></li>
+                  {!user && <li><Link to="/login">Login</Link></li>}
+                  {user && <li className="logout-link"><a href="/logout" onClick={::this.handleLogout}>Logout</a></li>}
+                </ul>
+                {user &&
+                <p className={styles.loggedInMessage + ' navbar-text'}>Logged in as <strong>{user.name}</strong>.</p>}
+              </div>
+            </div>
+          </nav>
+        </div>
         <div className={styles.appContent}>
           {this.props.children}
-        </div>
-        <InfoBar/>
-
-        <div className="well text-center">
-          Have questions? Ask for help <a
-          href="https://github.com/erikras/react-redux-universal-hot-example/issues"
-          target="_blank">on Github</a> or in the <a
-          href="http://www.reactiflux.com/" target="_blank">#react-redux-universal</a> Slack channel.
         </div>
       </div>
     );
